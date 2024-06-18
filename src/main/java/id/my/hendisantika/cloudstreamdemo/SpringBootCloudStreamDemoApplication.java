@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Bean;
 import reactor.core.publisher.Flux;
 
 import java.time.Duration;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -27,5 +28,12 @@ public class SpringBootCloudStreamDemoApplication {
         return longFlux -> longFlux
                 .map(i -> i * i)
                 .log();
+    }
+
+    @Bean
+    public Consumer<Long> consumer() {
+        return (i) -> {
+            System.out.println("Consumer Received : " + i);
+        };
     }
 }
